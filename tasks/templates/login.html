@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Login</h1>
+    {{error}}
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name='username'>
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+        <button>Log in</button>
+    </form>
+    <p>Or <a href="{% url 'signup' %}">sign up</a></p>
+    {% endblock %}

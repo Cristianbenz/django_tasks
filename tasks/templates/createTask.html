@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <form action="{% url 'create_tasks' %}" method="POST" >
+        {% csrf_token %}
+        {{form}}
+        <button>Create task</button>
+    </form>
+{% endblock %}
