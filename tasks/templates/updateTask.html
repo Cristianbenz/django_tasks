@@ -1,0 +1,22 @@
+{% extends 'layout.html' %} 
+{% block body %}
+    <main class="flex flex-row justify-center m-auto w-max gap-36">
+        <section>
+            <article class="block h-72 bg-yellow-100 p-10 my-10 rounded-md">
+                <h3 class="text-center font-bold">{{task.title}}</h2>
+                <p class="pt-6">{{task.description}}</p>
+            </article>
+        </section>
+        <section class="w-max mx-auto">
+            <form method="POST" class="flex flex-col align-start">
+                {% csrf_token %} 
+                {{form}}
+                <button class="border-gray-800 border-2 border-solid w-full py-1 bg-yellow-200 my-5">Update</button>
+            </form>
+            <form action="{% url 'delete_task' task.id %}" method="POST" >
+                {% csrf_token %}
+                <button class="border-gray-800 border-2 border-solid w-full py-1 bg-red-300">Delete</button>
+            </form>
+        </section>
+    </main>
+{% endblock %}

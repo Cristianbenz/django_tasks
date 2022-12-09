@@ -1,15 +1,21 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <h1>Tasks</h1>
-    <ul>
+    <h1 class="text-5xl text-center font-bold">Tasks</h1>
+    <ul class="flex flex-row justify-center p-4">
         {% for task in tasks %}
-            <li>
-                <h3>{{task.title}}</h2>
-                <p>{{task.description}}</p>
-            </li>
+            <a href="{% url 'modify_task' task.id %}">
+                <li class="block h-72 bg-yellow-100 py-10 px-7 my-10 rounded-md w-96">
+                    {% if task.important %}
+                        <h3 class="text-center font-bold text-red-400">{{task.title}}</h2>
+                        {% else %}
+                        <h3 class="text-center font-bold">{{task.title}}</h2>
+                    {% endif %}
+                    <p class="pt-6 self-start break-all">{{task.description}}</p>
+                </li>
+            </a>
             {% empty %}
-                <h2>Do not exist any tasks</h2>
+                <h2 class="font-medium text-3xl text-center pt-20">Not exist any task yet</h2>
         {% endfor %}
     </ul>
 {% endblock %}

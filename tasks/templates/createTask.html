@@ -1,9 +1,11 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <form action="{% url 'create_tasks' %}" method="POST" >
-        {% csrf_token %}
-        {{form}}
-        <button>Create task</button>
-    </form>
+    <section class="w-max mx-auto">
+        <form action="{% url 'create_tasks' %}" method="POST" class="flex flex-col align-start" >
+            {% csrf_token %}
+            {{form}}
+            <button class="border-gray-800 border-2 border-solid w-full py-1 bg-yellow-200 my-5">Create</button>
+        </form>
+    </section>
 {% endblock %}

@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Python To Do</title>
-</head>
-<body>
-    <header>
-
-        <nav>
-            <ul>
-                <li><a href="{% url 'index' %}">Home</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'tasks' %}">Tasks</a></li>
-                    <li><a href="{% url 'create_tasks' %}">Create Tasks</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Log In</a></li>
-                {% endif %}
-                
-                
-            </ul>
-        </nav>
+  </head>
+  <body class="bg-gray-200 min-h-screen">
+    <header class="px-2 bg-white">
+      <nav>
+        <ul class="flex flex-row justify-end gap-2 p-5 font-bold">
+          <li><a href="{% url 'index' %}">Home</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'tasks' %}">Tasks</a></li>
+          <li><a href="{% url 'create_tasks' %}">Create Tasks</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
+        </ul>
+      </nav>
     </header>
-    {% block body %}
-    
-    {% endblock %}
-</body>
+    {% block body %} {% endblock %}
+  </body>
 </html>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -21,9 +21,15 @@ def signup(request):
         return render(request, 'signup.html', {
             "error": "User already exists"
         })
+    except ValueError:
+        return render(request, 'signup.html', {
+            "error": "Fields cannot be empty"
+        })
 
 def signin(request):
     if request.method == 'GET':
+        if request.user.is_authenticated:
+            return redirect('tasks')
         return render(request, 'login.html')
     
     user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
@@ -58,3 +64,24 @@ def create_task(request):
     new_task.save()
 
     return redirect('tasks')
+
+@login_required
+def update_task(request, task_id):
+    if request.method == 'GET':
+        task = get_object_or_404(Tasks, pk=task_id, user=request.user)
+        form = TaskForm(instance=task)
+        return render(request, 'updateTask.html', {
+            "form": form,
+            "task": task
+        })
+    task = get_object_or_404(Tasks, pk=task_id, user=request.user)
+    update = TaskForm(request.POST ,instance=task)
+    update.save()
+    return redirect('tasks')
+
+@login_required
+def delete_task(request, task_id):
+    if request.method == 'POST':
+        task = get_object_or_404(Tasks, pk=task_id, user=request.user)
+        task.delete()
+        return redirect('tasks')
