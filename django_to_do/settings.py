@@ -28,7 +28,7 @@ SECRET_KEY = environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ["djangotasks-production.up.railway.app"]
-CSRF_TRUSTED_ORIGINS = ['djangotasks-production.up.railway.app]
+CSRF_TRUSTED_ORIGINS = ['djangotasks-production.up.railway.app']
 
 
 # Application definition
