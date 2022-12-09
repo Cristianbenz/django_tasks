@@ -2,10 +2,10 @@
 
 {% block body %}
     <h1 class="text-5xl text-center font-bold">Tasks</h1>
-    <ul class="flex flex-row justify-center p-4">
+    <ul class="flex flex-row justify-center p-4 gap-5">
         {% for task in tasks %}
             <a href="{% url 'modify_task' task.id %}">
-                <li class="block h-72 bg-yellow-100 py-10 px-7 my-10 rounded-md w-96">
+                <li class="block h-72 bg-yellow-100 py-10 px-7 my-10 rounded-md w-72">
                     {% if task.important %}
                         <h3 class="text-center font-bold text-red-400">{{task.title}}</h2>
                         {% else %}
@@ -15,7 +15,12 @@
                 </li>
             </a>
             {% empty %}
-                <h2 class="font-medium text-3xl text-center pt-20">Not exist any task yet</h2>
+                <section class="flex flex-col gap-4">
+                    <h2 class="font-medium text-3xl text-center pt-20">Not exist any task yet</h2>
+                    <a href="{% url 'create_tasks' %}" class="w-max mx-auto" >
+                        <button class="border-2 border-gray-500 border-solid px-5 w-max bg-green-400">Add</button>
+                    </a>
+                </section>
         {% endfor %}
     </ul>
 {% endblock %}
