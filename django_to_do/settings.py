@@ -26,7 +26,7 @@ SECRET_KEY = environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://djangotasks-production.up.railway.app/"]
+ALLOWED_HOSTS = ["djangotasks-production.up.railway.app"]
 
 
 # Application definition
